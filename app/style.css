@@ -1,0 +1,254 @@
+* { box-sizing: border-box; }
+
+:root {
+  --bg: #150826;
+  --bg-soft: #1f0b36;
+  --panel: #241040;
+  --line: #4a2a72;
+  --ink: #f5eefc;
+  --muted: #c9aee8;
+  --pink: #ff5fa2;
+  --gold: #ffd166;
+  --violet: #a855f7;
+  --accent: #ff5fa2;
+}
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: linear-gradient(160deg, #150826 0%, #230b40 55%, #2b0a3d 100%);
+  color: var(--ink);
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+#topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 20px;
+  border-bottom: 2px solid var(--line);
+  background: rgba(20, 6, 38, 0.85);
+  flex-wrap: wrap;
+}
+
+.brand { display: flex; align-items: center; gap: 14px; }
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  font-weight: 900;
+  font-size: 22px;
+  color: #1c0b2e;
+  background: linear-gradient(135deg, var(--pink), var(--gold) 55%, var(--violet));
+  box-shadow: 0 0 18px rgba(255, 95, 162, 0.55);
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 26px;
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, var(--pink), var(--gold), var(--violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tagline { margin: 2px 0 0; color: var(--muted); font-size: 13px; max-width: 560px; }
+
+.header-actions { display: flex; align-items: center; gap: 12px; }
+
+.step-hint { color: var(--muted); font-size: 12px; }
+
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  border: 2px solid var(--violet);
+  background: var(--panel);
+  color: var(--ink);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, var(--pink), var(--violet));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 0 16px rgba(255, 95, 162, 0.45);
+}
+
+.btn.export { background: #2c1150; border-color: var(--gold); color: var(--gold); }
+.btn.ghost { background: transparent; }
+
+.btn:hover { filter: brightness(1.15); }
+.btn:active { transform: translateY(1px); }
+
+#editorLayout {
+  display: grid;
+  grid-template-columns: minmax(340px, 430px) 1fr;
+  gap: 20px;
+  padding: 18px 20px 8px;
+  align-items: start;
+}
+
+#controls h2 {
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 18px 0 8px;
+}
+
+#controls h2:first-child { margin-top: 0; }
+
+.choice-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+.choice {
+  cursor: pointer;
+  background: var(--panel);
+  border: 2px solid var(--line);
+  color: var(--ink);
+  border-radius: 10px;
+  padding: 9px 8px;
+  text-align: left;
+}
+
+.choice strong { display: block; font-size: 13px; }
+.choice span { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; }
+.choice.active { border-color: var(--pink); box-shadow: 0 0 0 2px rgba(255, 95, 162, 0.35); }
+
+.field { display: block; margin: 8px 0; }
+.field > span { display: block; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+
+.field input[type="text"] {
+  width: 100%;
+  background: #12061f;
+  border: 2px solid var(--line);
+  color: var(--ink);
+  border-radius: 8px;
+  padding: 9px 10px;
+  font-size: 14px;
+}
+
+.field input[type="range"] { width: 100%; accent-color: var(--pink); }
+
+.panel-help { font-size: 12px; color: var(--muted); margin: 4px 0 8px; }
+
+#panelList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+#panelList li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--panel);
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  padding: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+#panelList li.selected { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(255, 209, 102, 0.35); }
+
+#panelList img { width: 44px; height: 44px; object-fit: cover; border-radius: 6px; flex: none; }
+#panelList .role { font-weight: 800; display: block; }
+#panelList .cap { color: var(--muted); display: block; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 130px; }
+
+#cropBox {
+  margin-top: 12px;
+  background: var(--panel);
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+#cropBox h3 { margin: 0 0 4px; font-size: 14px; color: var(--gold); letter-spacing: 1px; }
+
+.crop-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+
+.export-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+.export-note, .preview-note { font-size: 12px; color: var(--muted); }
+
+#statusLine {
+  background: #12061f;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 9px 10px;
+  font-size: 13px;
+  color: #e9d5ff;
+}
+
+#previewPane { position: sticky; top: 12px; text-align: center; }
+
+#dropHint {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 7px 14px;
+  border: 2px dashed var(--pink);
+  border-radius: 999px;
+  color: var(--pink);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+#posterCanvas {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: calc(100vh - 190px);
+  width: auto;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6), 0 0 0 3px #3a1a5e;
+  background: #1c0b2e;
+  touch-action: none;
+  cursor: grab;
+}
+
+#posterCanvas.dragging { cursor: grabbing; }
+#posterCanvas.drop-target { outline: 4px dashed var(--gold); outline-offset: 4px; }
+
+#footBar {
+  padding: 12px 20px 18px;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* Screenshot mode: only the poster fills the frame, no editor chrome. */
+body.shot #topBar,
+body.shot #controls,
+body.shot #footBar,
+body.shot .preview-note,
+body.shot #dropHint { display: none; }
+
+body.shot { background: #1c0b2e; }
+body.shot #editorLayout { display: block; padding: 0; }
+body.shot #previewPane { position: static; }
+body.shot #posterCanvas {
+  max-height: 100vh;
+  max-width: 100vw;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+@media (max-width: 900px) {
+  #editorLayout { grid-template-columns: 1fr; }
+  #previewPane { position: static; }
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VELVET COAST — Turn Your Photos Into GTA-Style Cover Art</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:,">
+</head>
+<body>
+<header id="topBar">
+  <div class="brand">
+    <span class="brand-mark">VC</span>
+    <div>
+      <h1>VELVET COAST</h1>
+      <p class="tagline">Turn your own photos into GTA-style cover art. Add photos, crop them, write the captions, export the poster.</p>
+    </div>
+  </div>
+  <div class="header-actions">
+    <label class="btn primary" for="photoInput" id="addPhotosBtn">+ Add photos</label>
+    <input type="file" id="photoInput" accept="image/*" multiple hidden>
+    <span class="step-hint">1 photo &rarr; poster &middot; 2 crop &middot; 3 export PNG</span>
+  </div>
+</header>
+
+<main id="editorLayout">
+  <section id="controls" aria-label="Poster controls">
+    <h2>1 &middot; Pick a design</h2>
+    <div class="choice-row" id="designRow">
+      <button class="choice active" id="designGrid" data-design="grid" type="button">
+        <strong>Main Grid</strong><span>6 panels &middot; Sunset</span>
+      </button>
+      <button class="choice" id="designHero" data-design="hero" type="button">
+        <strong>Hero Trio</strong><span>Big hero + 5 &middot; Neon</span>
+      </button>
+      <button class="choice" id="designSingle" data-design="single" type="button">
+        <strong>Single Hero</strong><span>1 hero + 5 &middot; Violet</span>
+      </button>
+    </div>
+
+    <h2>2 &middot; Pick a colour grade</h2>
+    <div class="choice-row" id="gradeRow">
+      <button class="choice active" id="gradeSunset" data-grade="sunset" type="button">
+        <strong>Sunset</strong><span>golden hour</span>
+      </button>
+      <button class="choice" id="gradeNeon" data-grade="neon" type="button">
+        <strong>Neon</strong><span>magenta nights</span>
+      </button>
+      <button class="choice" id="gradeViolet" data-grade="violet" type="button">
+        <strong>Violet</strong><span>deep purple</span>
+      </button>
+    </div>
+
+    <h2>3 &middot; Words on the poster</h2>
+    <label class="field">
+      <span>Poster title</span>
+      <input type="text" id="titleInput" value="VELVET COAST" maxlength="24">
+    </label>
+    <label class="field">
+      <span>Script line (bold, on a dark band)</span>
+      <input type="text" id="scriptInput" value="one last golden hour" maxlength="48">
+    </label>
+
+    <h2>4 &middot; Your cast &mdash; click a face, then crop it</h2>
+    <p class="panel-help">Click a panel below to select it. Drag the photo in the preview to move it, use the zoom slider to crop it, or drop a new photo right onto the preview. Every panel holds a real face.</p>
+    <ol id="panelList"></ol>
+
+    <div id="cropBox">
+      <h3 id="cropTitle">Selected: THE DRIVER</h3>
+      <label class="field">
+        <span>Caption &mdash; place &middot; time &middot; hook</span>
+        <input type="text" id="captionInput" value="VELVET BOULEVARD &middot; 6:58 PM &middot; WAITS FOR NO ONE" maxlength="64">
+      </label>
+      <label class="field">
+        <span>Zoom (crop) &mdash; <b id="zoomValue">1.20&times;</b></span>
+        <input type="range" id="zoomSlider" min="1" max="2.5" step="0.05" value="1.2">
+      </label>
+      <div class="crop-actions">
+        <label class="btn" for="replaceInput" id="replaceBtn">Upload photo for this panel</label>
+        <input type="file" id="replaceInput" accept="image/*" hidden>
+        <button class="btn ghost" id="resetCropBtn" type="button">Reset crop</button>
+      </div>
+    </div>
+
+    <h2>5 &middot; Export your poster</h2>
+    <div class="export-row">
+      <button class="btn export" id="exportPortrait" type="button">PNG 1080 &times; 1350</button>
+      <button class="btn export" id="exportWide" type="button">PNG 1920 &times; 1080</button>
+      <button class="btn export" id="exportSquare" type="button">PNG 1080 &times; 1080</button>
+    </div>
+    <p class="export-note">Exports are PNG files made on your machine from your photos. Nothing is uploaded anywhere.</p>
+    <p id="statusLine" role="status">Ready. Six cast photos loaded &mdash; swap any of them with your own.</p>
+  </section>
+
+  <section id="previewPane" aria-label="Live preview">
+    <div id="dropHint">Drop a photo onto the poster to fill that panel</div>
+    <canvas id="posterCanvas" width="540" height="675"></canvas>
+    <p class="preview-note">Live preview &mdash; what you see is what the PNG will be. Drag a face to reposition it.</p>
+  </section>
+</main>
+
+<footer id="footBar">
+  <span>VELVET COAST &middot; an original fan-made cover maker &middot; all faces are AI-generated originals &middot; VOL. 01</span>
+</footer>
+
+<script type="module" src="src/poster.js"></script>
+<script type="module" src="src/editor.js"></script>
+</body>
+</html>
